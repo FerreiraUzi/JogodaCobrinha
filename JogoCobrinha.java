@@ -44,7 +44,7 @@ public class JogoCobrinha extends JFrame {
             apple = new Apple(LARGURA, ALTURA, TAMANHO_BLOCO);
 
             // Inicia o timer que chama o actionPerformed a cada 100ms
-            timer = new Timer(100, this);
+            timer = new Timer(200, this);
             timer.start();
         }
 
@@ -99,10 +99,24 @@ public class JogoCobrinha extends JFrame {
             if (snake.getX()[0] == apple.getX() && snake.getY()[0] == apple.getY()) {
                 snake.crescer(); // Cobra cresce
                 apple.gerar(); // Nova maçã aparece
+                int novoDelay = Math.max(75, timer.getDelay() - 15);
+                timer.setDelay(novoDelay);
             }
+
+
+               
 
             repaint(); // Redesenha o painel
         }
+
+           // Aumenta a velocidade por maça
+
+                
+
+                 
+
+                
+
 
         // Método chamado quando o jogo termina
         private void gameOver() {
@@ -118,6 +132,7 @@ public class JogoCobrinha extends JFrame {
         private void reiniciarJogo() {
             snake = new Snake(LARGURA, ALTURA, TAMANHO_BLOCO); // Reinicia a cobra
             apple = new Apple(LARGURA, ALTURA, TAMANHO_BLOCO); // Reinicia a maçã
+            timer.setDelay(200);
             repaint(); // Redesenha o painel
         }
 
@@ -245,6 +260,8 @@ public class JogoCobrinha extends JFrame {
         }
     }
 
+
+ 
     public static void main(String[] args) {
         new JogoCobrinha();
     }
